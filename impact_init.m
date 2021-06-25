@@ -15,19 +15,8 @@ z_impact.time = 0;
 i = 0.5*(sin(2*pi/impact_duration*(duration-impact_time)-0.5*pi)+1);
 
 fx_impact.signals.values = 5400*i'; %%力度调节
-fy_impact.signals.values = 14000*i';
+fy_impact.signals.values = 14000*i';%在Fy方向修改正负时，注意要在Simulink中的子模块也进行对应的修改
 fz_impact.signals.values = 0*i';
 x_impact.signals.values = -2.835;   %%位置调节
 y_impact.signals.values = -0.8;
 z_impact.signals.values = 0;
-plot(duration-impact_time,fx_impact.signals.values,'Color',[96 50 130]/255,...
-    'LineWidth',2);
-hold on
-plot(duration-impact_time,fy_impact.signals.values,'Color',[96 150 230]/255,...
-    'LineWidth',2);
-
-set(gcf,'position',[100,100,500,310]);
-set(gca,'LineWidth',1);
-legend('F_{x,impact}','F_{y,impact}');
-ylabel('impact force (N)');
-xlabel('Time (s)');
